@@ -9,7 +9,7 @@ import {
     EVENT_SHOW_MAP_BUTTON_CLICKED, EVENT_CLEAR_MAP_BUTTON_CLICKED, EVENT_CREATE_MASK_BUTTON_CLICKED,
     EVENT_SAVE_MASK_BUTTON_CLICKED, EVENT_CLEAR_MASK_BUTTON_CLICKED, EVENT_FINISH_RUNNING_BUTTON_CLICKED, EVENT_DELAY_SELECTED,
     EVENT_CHANGE_PARAMS_BUTTON_CLICKED, EVENT_EXITS_SELECTED, EVENT_SOLVE_BUTTON_CLICKED, EVENT_PLAY_BUTTON_CLICKED, EVENT_STOP_BUTTON_CLICKED,
-    EVENT_KEY_PRESS, EVENT_DOWNLOAD_CLICKED
+    EVENT_KEY_PRESS, EVENT_DOWNLOAD_CLICKED, EVENT_BATCH_GENERATE_CLICKED
 } from './view.js';
 import {config} from './config.js';
 import {algorithms} from './lib/algorithms.js';
@@ -534,5 +534,9 @@ window.onload = () => {
             fileName = `maze_${model.shape}_${Object.values(model.size).join('_')}_${model.randomSeed}.svg`;
         model.maze.render(svgDrawingSurface);
         saveSvg(elSvg, fileName);
+    });
+
+    view.on(EVENT_BATCH_GENERATE_CLICKED, () => {
+        window.location.href = 'batch.html';
     });
 };

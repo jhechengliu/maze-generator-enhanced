@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Maze Generator - Batch Mode</title>
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/batch.css">
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,width=device-width" />
+    </head>
+    <body>
+        <div id="container">
+            <div class="title">
+                <h1>Maze Generator - Batch Mode</h1>
+                <a href="index.html">Back to Main</a>
+            </div>
+            
+            <div id="configPanel">
+                <h2>Maze Configuration</h2>
+                <div class="config-section">
+                    <h3>Shape</h3>
+                    <ul id="shapeSelector"></ul>
+                </div>
+                
+                <div class="config-section">
+                    <h3>Size</h3>
+                    <ul id="sizeParameters"></ul>
+                </div>
+                
+                <div class="config-section">
+                    <h3>Algorithm</h3>
+                    <ul id="algorithmSelector"></ul>
+                </div>
+                
+                <div class="config-section">
+                    <h3>Exits</h3>
+                    <ul id="exitSelector"></ul>
+                </div>
+            </div>
+            
+            <div id="batchPanel">
+                <h2>Batch Settings</h2>
+                <div class="batch-section">
+                    <h3>Seeds</h3>
+                    <p class="instruction">Choose your seed input method:</p>
+                    
+                    <div class="seed-input-methods">
+                        <div class="input-method">
+                            <label>
+                                <input type="radio" name="seedMethod" value="comma" checked />
+                                Comma Separated
+                            </label>
+                            <input id="seedInputComma" type="text" placeholder="1,2,3,4,5" class="seed-input" />
+                        </div>
+                        
+                        <div class="input-method">
+                            <label>
+                                <input type="radio" name="seedMethod" value="range" />
+                                Range
+                            </label>
+                            <div class="range-inputs">
+                                <input id="seedInputRangeStart" type="number" placeholder="Start" min="0" max="999999" class="seed-input-small" />
+                                <span>to</span>
+                                <input id="seedInputRangeEnd" type="number" placeholder="End" min="0" max="999999" class="seed-input-small" />
+                                <span>step</span>
+                                <input id="seedInputRangeStep" type="number" placeholder="1" min="1" max="100" value="1" class="seed-input-small" />
+                            </div>
+                            <p class="range-note">Supports forward (1 to 10) and backward (10 to 1) ranges. Examples: 1 to 10 step 1, 10 to 1 step 2, 100 to 90 step 5</p>
+                        </div>
+                        
+                        <div class="input-method">
+                            <label>
+                                <input type="radio" name="seedMethod" value="random" />
+                                Random Seeds
+                            </label>
+                            <div class="random-inputs">
+                                <input id="seedInputRandomCount" type="number" placeholder="Count" min="1" max="100" value="5" class="seed-input-small" />
+                                <span>seeds (1-999999)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="input-method">
+                            <label>
+                                <input type="radio" name="seedMethod" value="preset" />
+                                Preset Patterns
+                            </label>
+                            <select id="seedInputPreset" class="seed-input">
+                                <option value="">Select a pattern...</option>
+                                <option value="1,2,3,4,5">First 5 (1-5)</option>
+                                <option value="1,3,5,7,9">Odd numbers (1-9)</option>
+                                <option value="2,4,6,8,10">Even numbers (2-10)</option>
+                                <option value="1,5,10,15,20">Spaced (1,5,10,15,20)</option>
+                                <option value="100,200,300,400,500">Hundreds (100-500)</option>
+                                <option value="1000,2000,3000,4000,5000">Thousands (1000-5000)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="seed-preview">
+                        <strong>Preview:</strong> <span id="seedPreview">1,2,3,4,5</span>
+                        <span id="seedCount">(5 seeds)</span>
+                    </div>
+                    
+                    <p class="note">Maximum 100 seeds recommended for best performance</p>
+                </div>
+                
+                <div class="batch-section">
+                    <h3>Generate Options</h3>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" id="generateMaze" checked /> Maze Map</label>
+                        <label><input type="checkbox" id="generateSolution" checked /> Solution Path</label>
+                        <label><input type="checkbox" id="generateDistance" checked /> Distance Map</label>
+                    </div>
+                </div>
+                
+                <div class="batch-section">
+                    <h3>Settings</h3>
+                    <p class="note">Your settings are automatically saved</p>
+                    <button id="clearSettings" class="secondary-button">Clear Saved Settings</button>
+                </div>
+                
+                <button id="generateBatch">Generate Batch</button>
+            </div>
+            
+            <div id="resultsPanel">
+                <h2>Results</h2>
+                <div id="progressContainer" style="display: none;">
+                    <div id="progressText">Ready to generate...</div>
+                    <div id="progressBar">
+                        <div id="progressFill"></div>
+                    </div>
+                </div>
+                
+                <div id="resultsContainer" style="display: none;">
+                    <div id="resultsSummary"></div>
+                    <button id="downloadZip">Download ZIP</button>
+                    <div id="errorLog"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/config.js" type="module"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+        <script src="js/batch.js" type="module"></script>
+    </body>
+</html> 

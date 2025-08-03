@@ -19,7 +19,8 @@ export const
     EVENT_DOWNLOAD_CLICKED = 'downloadClicked',
     EVENT_KEY_PRESS = 'keyPress',
     EVENT_WINDOW_RESIZED = 'windowResized',
-    EVENT_EXITS_SELECTED = 'exitsSelected';
+    EVENT_EXITS_SELECTED = 'exitsSelected',
+    EVENT_BATCH_GENERATE_CLICKED = 'batchGenerateClicked';
 
 
 import {STATE_INIT, STATE_DISPLAYING, STATE_PLAYING, STATE_MASKING, STATE_DISTANCE_MAPPING, STATE_RUNNING_ALGORITHM} from './stateMachine.js';
@@ -31,6 +32,7 @@ export function buildView(model, stateMachine) {
         elCanvas = document.getElementById('maze'),
         elMazeContainer = document.getElementById('mazeContainer'),
         elGoButton = document.getElementById('go'),
+        elBatchGenerateButton = document.getElementById('batchGenerate'),
         elShowDistanceMapButton = document.getElementById('showDistanceMap'),
         elClearDistanceMapButton = document.getElementById('clearDistanceMap'),
         elCreateMaskButton = document.getElementById('createMask'),
@@ -56,6 +58,7 @@ export function buildView(model, stateMachine) {
 
 
     elGoButton.onclick = () => eventTarget.trigger(EVENT_GO_BUTTON_CLICKED);
+    elBatchGenerateButton.onclick = () => eventTarget.trigger(EVENT_BATCH_GENERATE_CLICKED);
     elShowDistanceMapButton.onclick = () => eventTarget.trigger(EVENT_SHOW_MAP_BUTTON_CLICKED);
     elClearDistanceMapButton.onclick = () => eventTarget.trigger(EVENT_CLEAR_MAP_BUTTON_CLICKED);
     elCreateMaskButton.onclick = () => eventTarget.trigger(EVENT_CREATE_MASK_BUTTON_CLICKED);
